@@ -1,19 +1,19 @@
 import json
 
 # loading in followers and following list
-followers_json = json.load(open("Files/followers.json"))
-following_json = json.load(open("Files/following.json"))
+followers_json = json.load(open("followers.json"))
+following_json = json.load(open("following.json"))
 
 followers_cleaned = set()
 following_cleaned = set()
 
 # collect all followers to set
 for person in followers_json:
-    followers_cleaned.add(person["string_list_data"][0]['href'])
+    followers_cleaned.add(person["string_list_data"][0]['value'] + ":" + person["string_list_data"][0]['href'])
 
 # collect all following to set
 for person in following_json["relationships_following"]:
-    following_cleaned.add(person["string_list_data"][0]['href'])
+    following_cleaned.add(person["string_list_data"][0]['value'] + ":" + person["string_list_data"][0]['href'])
 
 # people not following back
 not_following_me = following_cleaned - followers_cleaned
