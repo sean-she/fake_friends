@@ -9,11 +9,11 @@ following_cleaned = set()
 
 # collect all followers to set
 for person in followers_json:
-    followers_cleaned.add(person["string_list_data"][0]['value'] + ":" + person["string_list_data"][0]['href'])
+    followers_cleaned.add(person["string_list_data"][0]['value'] + ": " + person["string_list_data"][0]['href'])
 
 # collect all following to set
 for person in following_json["relationships_following"]:
-    following_cleaned.add(person["string_list_data"][0]['value'] + ":" + person["string_list_data"][0]['href'])
+    following_cleaned.add(person["string_list_data"][0]['value'] + ": " + person["string_list_data"][0]['href'])
 
 # people not following back
 not_following_me = following_cleaned - followers_cleaned
@@ -21,6 +21,8 @@ not_following_me = following_cleaned - followers_cleaned
 # fake friends 🗣️
 for fake_friend in not_following_me:
     print(fake_friend)
+
+print("")
 
 # stats
 print("Number of Folowers:", len(followers_cleaned))
